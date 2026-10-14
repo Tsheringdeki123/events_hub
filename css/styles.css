@@ -1,162 +1,407 @@
-/* FILE: css/styles.css — shared by all Events Hub pages */ 
 
-body { 
-   font-family: "Segoe UI", Arial, sans-serif; 
-   margin: 0; 
-   color: #1e293b; 
-   background: #f8fafc; 
- } 
- header { 
-   background: #0f172a; 
-   color: white; 
-   padding: 16px 24px; 
- } 
- nav a { 
-   color: #7dd3fc; 
-   margin-right: 12px; 
-   text-decoration: none; 
- } 
- footer { 
-   background: #0f172a; 
-   color: #e2e8f0; 
-   padding: 16px 24px; 
-   margin-top: 40px; 
- } 
- main { 
-   padding: 24px; 
- } 
+/* FILE: css/styles.css
+   Shared by all Events Hub pages
+   Includes: selectors, typography, layout,
+   responsive design, dark mode, and error styles
+*/
 
-/* simple selectors */
-h1 { color: #0f172a; }                     /* element */
-.intro { background: #f8fafc; }             /* class */
-#welcome { padding: 24px; }                 /* id */
-p.intro { font-size: 1.05rem; }             /* element + class */
-* { box-sizing: border-box; }               /* universal */
-h1, h2, h3 { font-family: Georgia, serif; } /* grouping */
+/* =========================
+   1. GLOBAL STYLES
+========================= */
 
-/* combinators */ 
- nav a { text-decoration: none; }         /* descendant */ 
- main > section { margin-bottom: 24px; }  /* child   	*/ 
- h2 + p { font-style: italic; }           /* adjacent   */ 
- h2 ~ p { color: #334155; }               /* general sibling */ 
+* {
+    box-sizing: border-box;
+}
 
- /* pseudo-classes */ 
- nav a:hover { color: #38bdf8; } 
- input:focus { outline: 2px solid #0369a1; } 
- input:checked + label { font-weight: 700; } 
- tr:nth-child(even) { background: #f1f5f9; } 
- 
- /* anchor LVHA order */ 
- a:link { color: #0369a1; } 
- a:visited { color: #7c3aed; } 
- a:hover { color: #0ea5e9; } 
- a:active { color: #b91c1c; } 
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    color: #1e293b;
+    background: #f8fafc;
+}
 
- /* pseudo-elements */ 
- p::first-line { font-weight: bold; } 
- .intro::first-letter { 
-   font-size: 1.6em; 
-   color: #0369a1; 
- } 
- h2::before { content: "★ "; color: #d97706; } 
- li::marker { color: #059669; } 
- ::selection { color: #7f1d1d; background: #fde68a; } 
+/* =========================
+   2. HEADER AND NAVIGATION
+========================= */
 
- /* attribute selectors */ 
- a[target="_blank"] { color: #d97706; } 
- input[type="file"] { border: 1px dashed #94a3b8; padding: 8px; } 
- input[type="text"] { border: 1px solid #cbd5e1; padding: 8px; } 
+header {
+    background-color: #0f172a;
+    color: white;
+    padding: 16px 24px;
+}
 
- body { 
-   font-family: "Segoe UI", Arial, sans-serif; 
-   font-size: 16px;       	/* base size */ 
- } 
+nav a {
+    display: inline-block;
+    color: #7dd3fc;
+    margin-right: 12px;
+    padding: 8px 16px;
+    text-decoration: none;
+}
 
- h1 { font-size: 2rem; } 
- h2 { font-size: 1.5rem; } 
+nav a:hover {
+    color: #38bdf8;
+}
 
- h1 { font-weight: 700; } 
- body { line-height: 1.6; } 
- .hero-title { 
-   letter-spacing: 0.04em; 
-   word-spacing: 0.1em; 
- } 
- em { font-style: italic; } 
+nav a:focus {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+}
 
- .intro p { 
-   text-indent: 2em; 
-   text-align: justify; 
- } 
- nav a { text-decoration: none; } 
- .sold-out { 
-   text-decoration: line-through; 
-   text-decoration-color: #ef4444; 
-   text-decoration-style: solid; 
- } 
- h2 { text-align: left; } 
+/* Anchor LVHA order */
 
-body { color: rgb(30, 41, 59); }  /* RGB */ 
- h2 { color: #0369a1; }            /* hexadecimal */ 
- .highlight { color: crimson; }    /* named */ 
- header { background-color: #0f172a; } 
+a:link {
+    color: #0369a1;
+}
 
- .intro { 
-   margin: 24px 16px 32px 16px;   /* top right bottom left */ 
-   padding: 20px;             /* all four sides */ 
-   border: 1px solid #e2e8f0; 
-   background: white; 
- } 
- 
+a:visited {
+    color: #7c3aed;
+}
 
- section { 
-  margin-bottom: 28px; 
-  padding-left: 8px; 
+a:hover {
+    color: #0ea5e9;
+}
+
+a:active {
+    color: #b91c1c;
+}
+
+/* =========================
+   3. MAIN CONTENT
+========================= */
+
+main {
+    padding: 24px;
+}
+
+section {
+    margin-bottom: 28px;
+    padding-left: 8px;
+}
+
+main > section {
+    margin-bottom: 24px;
+}
+
+/* =========================
+   4. TYPOGRAPHY
+========================= */
+
+h1,
+h2,
+h3 {
+    font-family: Georgia, serif;
+}
+
+h1 {
+    color: #0f172a;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h2 {
+    color: #0369a1;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+h2 + p {
+    font-style: italic;
+}
+
+h2 ~ p {
+    color: #334155;
+}
+
+.hero-title {
+    letter-spacing: 0.04em;
+    word-spacing: 0.1em;
+}
+
+em {
+    font-style: italic;
+}
+
+/* =========================
+   5. INTRODUCTION SECTION
+========================= */
+
+.intro {
+    margin: 24px 16px 32px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    background: white;
 }
 
 section.intro {
-  margin: 24px 16px 32px 16px;
-  padding: 20px;
+    margin: 24px 16px 32px;
+    padding: 20px;
 }
 
-nav a { 
-  display: inline-block; 
-  padding: 8px 16px; 
-} 
-
-.admin-only { 
-  display: none; 
-} 
-
-.badge { 
-  display: inline; 
-} 
-
-.event-card { 
-  display: block; 
-} 
-
-img { 
-  max-width: 100%; 
-  height: auto; 
-} 
-
-@media (max-width: 600px) { 
-  nav a { 
-    display: block; 
-    margin: 4px 0; 
-  } 
-  body { 
-    font-size: 15px; 
-  } 
+.intro p {
+    text-indent: 2em;
+    text-align: justify;
 }
 
+#welcome {
+    padding: 24px;
+}
 
-img { max-width: 100%; height: auto; } 
- 
- @media (max-width: 600px) { 
-   nav a { 
-  display: block; 
-  margin: 4px 0; 
-   } 
-   body { font-size: 15px; } 
- } 
+/* =========================
+   6. FOOTER
+========================= */
+
+footer {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    padding: 16px 24px;
+    margin-top: 40px;
+}
+
+/* =========================
+   7. CSS SELECTORS
+========================= */
+
+/* Element selector */
+p {
+    margin-bottom: 12px;
+}
+
+/* Class selector */
+.highlight {
+    color: crimson;
+}
+
+/* Universal, grouping, and combined selectors */
+p.intro {
+    font-size: 1.05rem;
+}
+
+/* =========================
+   8. PSEUDO-CLASSES
+========================= */
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #0369a1;
+    outline-offset: 2px;
+}
+
+input:checked + label {
+    font-weight: 700;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+
+/* =========================
+   9. PSEUDO-ELEMENTS
+========================= */
+
+p::first-line {
+    font-weight: bold;
+}
+
+.intro::first-letter {
+    font-size: 1.6em;
+    color: #0369a1;
+}
+
+h2::before {
+    content: "★ ";
+    color: #d97706;
+}
+
+li::marker {
+    color: #059669;
+}
+
+::selection {
+    color: #7f1d1d;
+    background: #fde68a;
+}
+
+/* =========================
+   10. ATTRIBUTE SELECTORS
+========================= */
+
+a[target="_blank"] {
+    color: #d97706;
+}
+
+input[type="file"] {
+    border: 1px dashed #94a3b8;
+    padding: 8px;
+}
+
+input[type="text"] {
+    border: 1px solid #cbd5e1;
+    padding: 8px;
+}
+
+/* =========================
+   11. EVENT ELEMENTS
+========================= */
+
+.sold-out {
+    text-decoration: line-through;
+    text-decoration-color: #ef4444;
+    text-decoration-style: solid;
+}
+
+.event-card {
+    display: block;
+}
+
+.badge {
+    display: inline;
+}
+
+.admin-only {
+    display: none;
+}
+
+/* =========================
+   12. IMAGES
+========================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================
+   13. FORM ERROR STYLES
+========================= */
+
+.error {
+    color: #b91c1c;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+}
+
+input.error,
+textarea.error,
+select.error {
+    border: 2px solid #dc2626;
+    background-color: #fff7f7;
+}
+
+.error-message {
+    color: #b91c1c;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.success {
+    color: #166534;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+}
+
+/* =========================
+   14. DARK MODE
+   Add class "dark-mode" to body
+========================= */
+
+body.dark-mode {
+    color: #e2e8f0;
+    background-color: #0f172a;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: #020617;
+    color: #f8fafc;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #7dd3fc;
+}
+
+body.dark-mode .intro,
+body.dark-mode .event-card {
+    color: #e2e8f0;
+    background-color: #1e293b;
+    border-color: #475569;
+}
+
+body.dark-mode nav a {
+    color: #7dd3fc;
+}
+
+body.dark-mode nav a:hover {
+    color: #bae6fd;
+}
+
+body.dark-mode h2 ~ p {
+    color: #cbd5e1;
+}
+
+body.dark-mode tr:nth-child(even) {
+    background-color: #1e293b;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    color: #f8fafc;
+    background-color: #1e293b;
+    border-color: #475569;
+}
+
+body.dark-mode .error {
+    color: #fecaca;
+    background-color: #450a0a;
+    border-color: #b91c1c;
+}
+
+body.dark-mode .success {
+    color: #bbf7d0;
+    background-color: #052e16;
+    border-color: #166534;
+}
+
+/* =========================
+   15. RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+
+    header {
+        padding: 12px 16px;
+    }
+
+    main {
+        padding: 16px;
+    }
+
+    nav a {
+        display: block;
+        margin: 4px 0;
+    }
+
+    .intro {
+        margin: 16px 0;
+        padding: 16px;
+    }
+
+    footer {
+        padding: 12px 16px;
+    }
+}
+
