@@ -1,12 +1,10 @@
 console.log("validate.js is running");
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("regForm");
-
     if (!form) return;
 
-    // Get error message elements
+    // Error message elements
     const fullnameError = document.getElementById("fullnameError");
     const emailError = document.getElementById("emailError");
     const phoneError = document.getElementById("phoneError");
@@ -16,34 +14,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const idCardError = document.getElementById("idCardError");
     const formMessage = document.getElementById("formMessage");
 
-    // Clear confirmation
+    // Reset confirmation
     form.addEventListener("reset", function (event) {
-        const answer = confirm("Clear the whole form?");
-
-        if (!answer) {
+        if (!confirm("Clear the whole form?")) {
             event.preventDefault();
         } else {
-            setTimeout(function () {
-                clearErrors();
-            }, 0);
+            setTimeout(clearErrors, 0);
         }
     });
 
     // Clear all error messages
     function clearErrors() {
-        const errors = [
-            fullnameError,
-            emailError,
-            phoneError,
-            eventError,
-            foodError,
-            departmentError,
-            idCardError
-        ];
-
-        errors.forEach(function (error) {
-            if (error) error.textContent = "";
-        });
+        [fullnameError, emailError, phoneError, eventError, foodError, departmentError, idCardError]
+            .forEach(error => { if (error) error.textContent = ""; });
 
         if (formMessage) {
             formMessage.textContent = "";
@@ -54,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Validate registration form
     form.addEventListener("submit", function (event) {
         event.preventDefault();
-
         clearErrors();
 
         let valid = true;
@@ -66,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const department = document.getElementById("department");
         const idCard = document.getElementById("id_card");
 
-        // Validate full name
+        // Full name
         if (!fullname.value.trim()) {
             fullnameError.textContent = "Please enter your full name.";
             valid = false;
         }
 
-        // Validate email
+        // Email
         if (!email.value.trim()) {
             emailError.textContent = "Please enter your email.";
             valid = false;
@@ -81,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
             valid = false;
         }
 
-        // Validate phone
+        // Phone
         if (!phone.value.trim()) {
             phoneError.textContent = "Please enter your phone number.";
             valid = false;
@@ -90,28 +72,27 @@ document.addEventListener("DOMContentLoaded", function () {
             valid = false;
         }
 
-        // Validate event
+        // Event
         if (!eventId.value) {
             eventError.textContent = "Please choose an event.";
             valid = false;
         }
 
-        // Validate food preference
+        // Food preference
         if (!form.querySelector('input[name="food"]:checked')) {
             foodError.textContent = "Please select a food preference.";
             valid = false;
         }
 
-        // Validate department
+        // Department
         if (!department.value) {
             departmentError.textContent = "Please choose your department.";
             valid = false;
         }
 
-        // Validate student ID image, if uploaded
+        // Student ID image
         if (idCard.files.length > 0) {
             const file = idCard.files[0];
-
             if (!file.type.startsWith("image/")) {
                 idCardError.textContent = "Please upload an image file.";
                 valid = false;
@@ -121,20 +102,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Show validation result
+        // Show result
         if (!valid) {
             if (formMessage) {
-                formMessage.textContent =
-                    "Please correct the errors above and try again.";
+                formMessage.textContent = "Please correct the errors above and try again.";
                 formMessage.className = "mt-3 text-danger";
             }
-
             return;
         }
 
         if (formMessage) {
-            formMessage.textContent =
-                "Validation successful! Your details are ready.";
+            formMessage.textContent = "Validation successful! Your details are ready.";
             formMessage.className = "mt-3 text-success";
         }
     });

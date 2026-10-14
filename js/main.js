@@ -1,4 +1,5 @@
 console.log("main.js is running"); 
+
 document.getElementById("welcomeMsg").innerHTML = 
    "Welcome to <strong>JNEC Events Hub</strong>!"; 
 
